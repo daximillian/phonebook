@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phonebook
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: phonebook
+  template:
+    metadata:
+      labels:
+        app: phonebook
+    spec:
+      containers:
+      - name: phonebook
+        image: "daximillian/phonebook"
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
