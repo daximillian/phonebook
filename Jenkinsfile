@@ -16,6 +16,7 @@
     withDockerRegistry(credentialsId: 'dockerhub.daximillian') {
     customImage.push()
     }
+    }
 }
 
 
