@@ -15,11 +15,10 @@
     }
     }
     stage("deploy to EKS") {
-    sh "export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks"
-    sh "kubectl apply -f deployment.yml"
-    sh "kubectl apply -f service.yml"
-    sh "kubectl apply -f loadbalancer.yml"
+    sh "export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks && \
+    kubectl apply -f deployment.yml && \
+    kubectl apply -f service.yml && \ 
+    kubectl apply -f loadbalancer.yml"
     }
 }
-
 
