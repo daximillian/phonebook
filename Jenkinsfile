@@ -3,7 +3,6 @@
     stage("source") {
     git 'https://github.com/daximillian/phonebook'
     }
-    }
     stage("build docker") {
     customImage = docker.build("daximillian/phonebook")
     }
