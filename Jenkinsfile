@@ -17,7 +17,6 @@
     withDockerRegistry(credentialsId: 'dockerhub.daximillian') {
     customImage.push()
     }
-    stage("authorize  ")
 }
-kubectl apply -f config-map-aws-auth.yml
+
 
