@@ -1,7 +1,7 @@
  node("linux") {
     def customImage = "" 
     stage("source") {
-    git git@github.com:daximillian/phonebook.git
+    git 'https://github.com/daximillian/phonebook'
     }
     }
     stage("build docker") {
