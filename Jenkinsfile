@@ -12,6 +12,7 @@
     customImage = docker.build("daximillian/phonebook")
     }
     stage("verify image") {
+        try {
     sh '''
         docker run --rm -d -p 8000:8080/tcp --name phonebook daximillian/phonebook
         sleep 20s
@@ -23,6 +24,11 @@
             exit 1
         fi
     ''' 
+    } catch (Exception e) {
+    sh '''
+        docker stop phonebook
+    '''
+    }  
     }
     stage("cleanup image") {
     sh '''
