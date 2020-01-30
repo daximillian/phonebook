@@ -1,10 +1,5 @@
  node("linux") {
     def customImage = "" 
-    environment { 
-    NAME = "daximillian/phonebook"
-    VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
-    IMAGE = "${NAME}:${VERSION}"
-    }
     stage("source") {
     git 'https://github.com/daximillian/phonebook'
     }
