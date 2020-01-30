@@ -13,9 +13,14 @@
     }
     stage("verify image") {
     sh '''
-        docker run --rm -d -p 8000:8080/tcp daximillian/phonebook
+        docker run --rm -d -p 8000:8080/tcp --name phonebook daximillian/phonebook
         curl -s 'http://localhost:8000'
     ''' 
+    }
+    stage("cleanup image") {
+    sh '''
+        docker stop phonebook
+    '''
     }
     stage("push to DockerHub") {
         echo "Push to Dockerhub"
