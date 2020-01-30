@@ -32,7 +32,7 @@
     stage("push to DockerHub") {
         echo "Push to Dockerhub"
     withDockerRegistry(credentialsId: 'dockerhub.daximillian') {
-    customImage.push("${IMAGE}")
+    customImage.push("${env.BUILD_NUMBER}")
     customImage.push("latest")
     }
     }
