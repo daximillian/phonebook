@@ -15,7 +15,7 @@
     sh '''
         docker run --rm -d -p 8000:8080/tcp --name phonebook daximillian/phonebook
         curl_response=$(curl -s -o /dev/null -w "%{http_code}" 'http://localhost:8000')
-        if [ $curl_response == 200]
+        if [ $curl_response == 200 ]
         then
             exit 0
         else
