@@ -14,11 +14,13 @@
     stage("verify image") {
     sh '''
         docker run --rm -d -p 8000:8080/tcp --name phonebook daximillian/phonebook
-        curl -s -o /dev/null -w "%{http_code}" 'http://localhost:8000'
-        if [ $http_code -ne 200]; then
+        curl_response=$(curl -s -o /dev/null -w "%{http_code}" 'http://localhost:8000')
+        if [ $curl_response == 200]
+        then
+            exit 0
+        else
             exit 1
         fi
-        exit 0
     ''' 
     }
     stage("cleanup image") {
