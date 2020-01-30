@@ -40,7 +40,7 @@
     sh '''
         export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks
         kubectl apply -f deployment.yml
-        kubectl set image deployment/phonebook phonebook=daximillian/phonebook:"${env.BUILD_NUMBER}" --record
+        kubectl set image deployment/phonebook phonebook=daximillian/phonebook:"${BUILD_NUMBER}" --record
         kubectl apply -f service.yml
         kubectl apply -f loadbalancer.yml
     '''
