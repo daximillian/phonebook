@@ -9,7 +9,7 @@
     git 'https://github.com/daximillian/phonebook'
     }
     stage("build docker") {
-    customImage = docker.build(${IMAGE})
+    customImage = docker.build("${IMAGE}")
     }
     stage("verify image") {
     sh '''
