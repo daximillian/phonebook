@@ -18,6 +18,7 @@
     ''' 
     }
     stage("push to DockerHub") {
+        echo "Push to Dockerhub"
     withDockerRegistry(credentialsId: 'dockerhub.daximillian') {
     customImage.push("${IMAGE}")
     customImage.push("latest")
