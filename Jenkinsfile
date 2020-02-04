@@ -1,6 +1,6 @@
-  node("linux") {
     def customImage = ""
     def APP_URL = "" 
+  node("linux") {
 
     stage("source") {
     git 'https://github.com/daximillian/phonebook'
