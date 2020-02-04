@@ -45,7 +45,7 @@
         kubectl set image deployment/phonebook phonebook=daximillian/phonebook:"${BUILD_NUMBER}" --record
         kubectl apply -f service.yml
         kubectl apply -f loadbalancer.yml
-        kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*][''ip'', ''hostname'']}" > appUrl.txt
+        kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*]['ip', 'hostname']}" > appUrl.txt
     '''
     }
     stage("slack message"){
