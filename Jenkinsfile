@@ -1,4 +1,3 @@
-pipeline { 
     environment {
         APP_URL = ""
     } 
@@ -55,5 +54,4 @@ pipeline {
     stage("slack message"){
         slackSend color: "good", message: "Build  #${env.BUILD_NUMBER} Finished Successfully. App URL: ${APP_URL}"
     }
-}
 }
