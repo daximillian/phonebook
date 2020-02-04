@@ -45,10 +45,11 @@
         kubectl set image deployment/phonebook phonebook=daximillian/phonebook:"${BUILD_NUMBER}" --record
         kubectl apply -f service.yml
         kubectl apply -f loadbalancer.yml
+        kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*][''ip'', ''hostname'']}" > appUrl.txt
     '''
     }
     stage("slack message"){
-        def APP_URL = sh returnStdout: true, script: 'export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks;kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*][''ip'', ''hostname'']}"'
+        APP_URL = readFile('appUrl.txt').trim()
         slackSend color: "good", message: "Build  #${env.BUILD_NUMBER} Finished Successfully. App URL: ${APP_URL}"
     }
 }
