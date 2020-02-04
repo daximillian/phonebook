@@ -48,7 +48,7 @@
     '''
     }
     stage("slack message"){
-        def APP_URL = sh returnStdout: true, script: 'export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks;kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*]['ip', 'hostname']}"'
+        def APP_URL = sh returnStdout: true, script: 'export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks;kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*]["ip", "hostname"]}"'
         slackSend color: "good", message: "Build  #${env.BUILD_NUMBER} Finished Successfully. App URL: ${APP_URL}"
     }
 }
