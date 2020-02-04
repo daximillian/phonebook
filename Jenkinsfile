@@ -1,6 +1,8 @@
- node("linux") {
+  node("linux") {
     def customImage = "" 
-    def APP_URL = ""
+    environment {
+        APP_URL = ""
+    }
 
     stage("source") {
     git 'https://github.com/daximillian/phonebook'
@@ -46,12 +48,11 @@
         kubectl set image deployment/phonebook phonebook=daximillian/phonebook:"${BUILD_NUMBER}" --record
         kubectl apply -f service.yml
         kubectl apply -f loadbalancer.yml
-        app_url=$(kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*]['ip', 'hostname']}")
-        env.APP_URL = $app_url
+        APP_URL=$(kubectl get svc phonebook-lb -o jsonpath="{.status.loadBalancer.ingress[*]['ip', 'hostname']}")
     '''
     }
     stage("slack message"){
-        slackSend color: "good", message: "Build  #${env.BUILD_NUMBER} Finished Successfully. App URL: ${env.APP_URL}"
+        slackSend color: "good", message: "Build  #${env.BUILD_NUMBER} Finished Successfully. App URL: ${APP_URL}"
     }
 }
 
