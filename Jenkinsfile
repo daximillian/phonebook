@@ -1,8 +1,9 @@
-  node("linux") {
-    def customImage = "" 
+pipeline { 
     environment {
         APP_URL = ""
-    }
+    } 
+  node("linux") {
+    def customImage = "" 
 
     stage("source") {
     git 'https://github.com/daximillian/phonebook'
@@ -55,4 +56,4 @@
         slackSend color: "good", message: "Build  #${env.BUILD_NUMBER} Finished Successfully. App URL: ${APP_URL}"
     }
 }
-
+}
